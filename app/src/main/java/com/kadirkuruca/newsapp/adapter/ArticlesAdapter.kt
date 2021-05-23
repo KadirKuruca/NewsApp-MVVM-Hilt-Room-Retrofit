@@ -41,7 +41,7 @@ class ArticlesAdapter(private val listener: OnItemClickListener): ListAdapter<Ar
                     .into(ivArticleImage)
                 tvDescription.text = article.description
                 tvTitle.text = article.title
-                tvPublishedAt.text = article.publishedAt
+                tvPublishedAt.text = article.formattedPublishedAt
                 tvSource.text = article.source?.name
             }
         }

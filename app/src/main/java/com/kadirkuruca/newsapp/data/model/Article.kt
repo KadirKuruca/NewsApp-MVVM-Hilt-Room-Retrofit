@@ -2,6 +2,7 @@ package com.kadirkuruca.newsapp.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.kadirkuruca.newsapp.util.changeDateFormat
 
 @Entity(tableName = "article_table")
 data class Article(
@@ -10,9 +11,16 @@ data class Article(
     val author: String,
     val content: String,
     val description: String,
-    val publishedAt: String,
+    val publishedAt: String?,
     val source: Source?,
     val title: String,
     val url: String,
     val urlToImage: String
-)
+){
+    val formattedPublishedAt : String get() {
+        publishedAt?.let {
+            return changeDateFormat(publishedAt)
+        }
+        return ""
+    }
+}
