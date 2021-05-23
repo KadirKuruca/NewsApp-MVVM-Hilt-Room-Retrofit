@@ -1,4 +1,4 @@
-package com.kadirkuruca.newsapp.api
+package com.kadirkuruca.newsapp.data.remote
 
 import com.kadirkuruca.newsapp.data.model.NewsResponse
 import com.kadirkuruca.newsapp.other.API_KEY

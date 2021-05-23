@@ -5,11 +5,9 @@ import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.kadirkuruca.newsapp.R
-import com.kadirkuruca.newsapp.api.NewsApi
+import com.kadirkuruca.newsapp.data.local.ArticleDao
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_news.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
