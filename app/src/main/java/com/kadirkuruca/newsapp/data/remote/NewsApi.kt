@@ -1,7 +1,7 @@
 package com.kadirkuruca.newsapp.data.remote
 
 import com.kadirkuruca.newsapp.data.model.NewsResponse
-import com.kadirkuruca.newsapp.other.API_KEY
+import com.kadirkuruca.newsapp.util.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

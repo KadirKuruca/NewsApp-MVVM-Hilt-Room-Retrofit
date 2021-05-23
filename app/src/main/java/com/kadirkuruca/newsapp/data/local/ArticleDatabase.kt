@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.kadirkuruca.newsapp.data.model.Article
-import com.kadirkuruca.newsapp.other.ApplicationScope
+import com.kadirkuruca.newsapp.di.ApplicationScope
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Provider

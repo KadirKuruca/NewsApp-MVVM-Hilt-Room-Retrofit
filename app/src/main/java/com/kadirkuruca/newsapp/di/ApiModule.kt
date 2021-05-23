@@ -1,7 +1,7 @@
 package com.kadirkuruca.newsapp.di
 
 import com.kadirkuruca.newsapp.data.remote.NewsApi
-import com.kadirkuruca.newsapp.other.BASE_URL
+import com.kadirkuruca.newsapp.util.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
