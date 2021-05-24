@@ -1,9 +1,13 @@
 package com.kadirkuruca.newsapp.data.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.kadirkuruca.newsapp.util.changeDateFormat
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
+@Parcelize
 @Entity(tableName = "article_table")
 data class Article(
     @PrimaryKey(autoGenerate = true)
@@ -16,7 +20,7 @@ data class Article(
     val title: String,
     val url: String,
     val urlToImage: String
-){
+): Parcelable{
     val formattedPublishedAt : String get() {
         publishedAt?.let {
             return changeDateFormat(publishedAt)

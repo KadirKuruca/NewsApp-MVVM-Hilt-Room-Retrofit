@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.kadirkuruca.newsapp.R
 import com.kadirkuruca.newsapp.adapter.ArticlesAdapter
 import com.kadirkuruca.newsapp.data.model.Article
@@ -23,8 +24,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 private const val TAG = "SearchNewsFragment"
+
 @AndroidEntryPoint
-class SearchNewsFragment: Fragment(R.layout.fragment_search_news), ArticlesAdapter.OnItemClickListener {
+class SearchNewsFragment : Fragment(R.layout.fragment_search_news),
+    ArticlesAdapter.OnItemClickListener {
 
     private val viewModel: NewsViewModel by viewModels()
 
@@ -42,20 +45,20 @@ class SearchNewsFragment: Fragment(R.layout.fragment_search_news), ArticlesAdapt
         }
 
         var job: Job? = null
-        etSearch.addTextChangedListener{ editable ->
+        etSearch.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
                 delay(SEARCH_NEWS_TIME_DELAY)
                 editable?.let {
-                    if(editable.toString().isNotEmpty()){
+                    if (editable.toString().isNotEmpty()) {
                         viewModel.searchNews(editable.toString())
                     }
                 }
             }
         }
 
-        viewModel.searchNews.observe(viewLifecycleOwner){
-            when(it){
+        viewModel.searchNews.observe(viewLifecycleOwner) {
+            when (it) {
                 is Resource.Success -> {
                     paginationProgressBar.visibility = View.INVISIBLE
                     it.data?.let { newsResponse ->
@@ -66,7 +69,7 @@ class SearchNewsFragment: Fragment(R.layout.fragment_search_news), ArticlesAdapt
                     paginationProgressBar.visibility = View.INVISIBLE
                     it.message?.let { message ->
                         Log.e(TAG, "Error: $message")
-                        Toast.makeText(requireContext(),message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                     }
                 }
                 is Resource.Loading -> {
@@ -77,6 +80,10 @@ class SearchNewsFragment: Fragment(R.layout.fragment_search_news), ArticlesAdapt
     }
 
     override fun onItemClick(article: Article) {
-
+        /*val bundle = Bundle().apply {
+            putSerializable("article", article)
+        }*/
+        val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(article)
+        findNavController().navigate(action)
     }
 }
