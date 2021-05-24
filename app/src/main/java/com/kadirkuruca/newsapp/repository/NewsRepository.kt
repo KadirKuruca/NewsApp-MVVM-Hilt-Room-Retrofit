@@ -16,4 +16,8 @@ class NewsRepository @Inject constructor(
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int): Response<NewsResponse> {
         return newsApi.getBreakingNews(countryCode,pageNumber)
     }
+
+    suspend fun searchNews(searchQuery: String, pageNumber: Int): Response<NewsResponse>{
+        return newsApi.searchForNews(searchQuery, pageNumber)
+    }
 }

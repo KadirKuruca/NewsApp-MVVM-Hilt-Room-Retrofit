@@ -35,7 +35,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news), Articles
             }
         }
 
-        viewModel.breakingNews.observe(viewLifecycleOwner, Observer {
+        viewModel.breakingNews.observe(viewLifecycleOwner) {
             when(it){
                 is Resource.Success -> {
                     paginationProgressBar.visibility = View.INVISIBLE
@@ -54,7 +54,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news), Articles
                     paginationProgressBar.visibility = View.VISIBLE
                 }
             }
-        })
+        }
     }
 
     override fun onItemClick(article: Article) {
