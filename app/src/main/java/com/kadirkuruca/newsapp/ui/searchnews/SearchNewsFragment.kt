@@ -1,4 +1,4 @@
-package com.kadirkuruca.newsapp.ui.fragments
+package com.kadirkuruca.newsapp.ui.searchnews
 
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +12,6 @@ import com.kadirkuruca.newsapp.R
 import com.kadirkuruca.newsapp.adapter.ArticlesAdapter
 import com.kadirkuruca.newsapp.data.model.Article
 import com.kadirkuruca.newsapp.databinding.FragmentSearchNewsBinding
-import com.kadirkuruca.newsapp.ui.NewsViewModel
 import com.kadirkuruca.newsapp.util.Resource
 import com.kadirkuruca.newsapp.util.SEARCH_NEWS_TIME_DELAY
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +28,7 @@ private const val TAG = "SearchNewsFragment"
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news),
     ArticlesAdapter.OnItemClickListener {
 
-    private val viewModel: NewsViewModel by viewModels()
+    private val viewModel: SearchNewsViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,9 +79,6 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news),
     }
 
     override fun onItemClick(article: Article) {
-        /*val bundle = Bundle().apply {
-            putSerializable("article", article)
-        }*/
         val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToArticleFragment(article)
         findNavController().navigate(action)
     }

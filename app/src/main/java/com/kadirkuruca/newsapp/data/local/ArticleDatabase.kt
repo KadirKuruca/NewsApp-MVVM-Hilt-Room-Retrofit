@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 import javax.inject.Provider
 
-@Database(entities = [Article::class], version = 1)
+@Database(entities = [Article::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase : RoomDatabase() {
 
