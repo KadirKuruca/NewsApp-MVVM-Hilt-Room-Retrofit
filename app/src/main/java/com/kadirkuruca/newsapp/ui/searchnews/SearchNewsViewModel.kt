@@ -14,10 +14,11 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchNewsViewModel @Inject constructor(
     private val newsRepository: NewsRepository
-): ViewModel() {
+) : ViewModel() {
 
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    val searchNewsPage = 1
+    var searchNewsResponse: NewsResponse? = null
+    var searchNewsPage = 1
 
     fun searchNews(searchQuery: String) = viewModelScope.launch {
         searchNews.postValue(Resource.Loading())
@@ -28,7 +29,15 @@ class SearchNewsViewModel @Inject constructor(
     private fun handleSearchNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                searchNewsPage++
+                if (searchNewsResponse == null)
+                    searchNewsResponse = resultResponse
+                else {
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
