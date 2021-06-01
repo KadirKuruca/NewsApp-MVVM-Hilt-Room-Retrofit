@@ -59,8 +59,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news), Articles
                     paginationProgressBar.visibility = View.INVISIBLE
                     isLoading = true
                     it.message?.let { message ->
+                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                         Log.e(TAG, "Error: $message")
-                        Toast.makeText(requireContext(),message, Toast.LENGTH_SHORT).show()
                     }
                 }
                 is Resource.Loading -> {
