@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kadirkuruca.newsapp.data.model.NewsResponse
 import com.kadirkuruca.newsapp.repository.NewsRepository
+import com.kadirkuruca.newsapp.util.NetworkUtil.Companion.hasInternetConnection
 import com.kadirkuruca.newsapp.util.Resource
-import com.kadirkuruca.newsapp.util.hasInternetConnection
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
